@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+.image{
+  transition: all 400ms ease;
+}
+.image div{
+  transition: all 400ms ease;
+}
+
+.image:hover{
+  box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
+  transform: translateY(-3%);
+}
+.image:hover div{
+  transform: scale(1.1);
+}
