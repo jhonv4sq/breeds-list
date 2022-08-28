@@ -2,12 +2,12 @@ import React, {useEffect, useState} from 'react'
 import Load from '../components/Load'
 import Card from '../components/Card'
 import Pagination from '../components/Pagination'
+import {Link} from 'react-router-dom';
 
 
-
-const Home = ({listBreeds, event}) => {
+const Home = ({listBreeds}) => {
   const [page, setPage] = useState(1)
-  const [splitPage, setSplitPage] = useState(6)
+  const splitPage = 6
 
   const max = Math.round(listBreeds.length / splitPage);
 
@@ -25,6 +25,7 @@ const Home = ({listBreeds, event}) => {
   }
 
   useEffect(() => {
+    window.scrollTo({top: 0})
     setPage(1)
   }, [listBreeds])
   return (
@@ -39,9 +40,9 @@ const Home = ({listBreeds, event}) => {
               listBreeds.slice((page - 1) * splitPage,(page - 1) * splitPage + splitPage)
               .map(breed =>{
                 return(
-                  <div key={breed}>
-                    {<Card key={breed}  breed={breed} url={breed.replace(' ', '/')} event={event} /> }
-                  </div>
+                  <Link to={`/breeds/${breed}`} key={breed} id={breed} className='text-[#46f8bf] hover:text-[#2b9876] transition ease-in duration-200'>
+                    {<Card breed={breed} amount={3} /> }
+                  </Link>
                 )
               })
             }

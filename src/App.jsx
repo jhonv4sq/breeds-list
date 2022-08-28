@@ -1,17 +1,21 @@
 import React, {useEffect, useState} from 'react'
-import { BrowserRouter as Router, Routes, Route, Link, Links } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import './css/App.css';
+
 import Home from './views/Home'
+import Show from './views/Show'
+import Picture from './views/Picture'
+import Error from './views/Error'
+
 import Search from './components/Search'
 import Button from './components/Button'
-import Show from './components/Show'
+
 import swal from 'sweetalert';
 import axios from 'axios'
 
 function App() {
   const [breeds, setBreeds] = useState([])
   const [listBreeds, setListBreeds] = useState([])
-  const [dogImage, setDogImage] = useState('')
 
   const getAllBreeds = async () => {
 
@@ -21,7 +25,7 @@ function App() {
       await axios.get('https://dog.ceo/api/breeds/list/all').then(response => response.data.message)
       .then((response) => {Object.keys(response).forEach(result => {
         !response[result].length ? list.push(result) :
-        response[result].filter((element) => {list.push(result +' '+element)})
+        response[result].filter((element) => list.push(result +' '+element))
       })})
 
       setBreeds(list)
@@ -34,20 +38,13 @@ function App() {
 
   const searchBreed = (breed) => {
 
-    const search = breeds.filter((element) => {
-      if(!breed){
-        swal({
-          text: 'the field is empty',
-          icon: 'warning',
-        })
-        return element
-      }
-
-      if(element.toString().toLowerCase().includes(breed) && breed[0] == element[0]){
-        return element
-      }
-
-    })
+    if(!breed){
+      swal({
+        text: 'the field is empty',
+        icon: 'warning',
+      })
+    }
+    const search = breeds.filter((element) => element.toString().toLowerCase().includes(breed) && element)
     setListBreeds(search)
   }
 
@@ -60,9 +57,6 @@ function App() {
     })
   }
 
-  const showDogImage = (url) => {
-    setDogImage(url)
-  }
 
   useEffect(() => {
     getAllBreeds()
@@ -74,7 +68,7 @@ function App() {
           <nav className='w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[600px] lg:max-w-[1066px] flex justify-between font-DynaPuff p-4 '>
 
             <ul className='text-white hover:text-[#34ba90] transition ease-in duration-200 flex justify-center items-center text-[20px] lg:text-4xl'>
-              <li> <Link to='/' onClick={(e) => setListBreeds(breeds)} >Home</Link> </li>
+              <li> <Link to='/breeds' onClick={(e) => setListBreeds(breeds)} >Home</Link> </li>
             </ul>
 
             <div className='flex gap-3 flex-row'>
@@ -87,15 +81,14 @@ function App() {
         </header>
 
         <Routes>
-          <Route path='/' element={<Home listBreeds={listBreeds} event={showDogImage} />} />
+          <Route path='/breeds' element={<Home listBreeds={listBreeds} />} />
+          <Route path='/breeds/:breed' element={<Show />} >
+            <Route path=':picture' element={<Picture />}/>
+          </Route>
+          <Route path='*' element={<Error />} />
         </Routes>
-        
 
       </Router>
-
-      <div className={`${ dogImage == '' ? `hidden`: `block`}`} >
-        <Show url={dogImage} event={setDogImage} />
-      </div>
 
     </div>
   );

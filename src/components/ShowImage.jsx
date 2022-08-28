@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Image from './Image'
 import Button from './Button'
 
-const Show = ({url, event}) => {
+const ShowImage = ({url, event}) => {
   return (
     <div className='bg-[#111517] fixed bottom-0 rounded-md right-1/2 z-10 p-3 lg:p-6'>
         <div className='relative'>
@@ -15,4 +15,4 @@ const Show = ({url, event}) => {
   )
 }
 
-export default Show
+export default ShowImage
