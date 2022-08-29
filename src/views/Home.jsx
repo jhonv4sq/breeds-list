@@ -29,18 +29,18 @@ const Home = ({listBreeds}) => {
     setPage(1)
   }, [listBreeds])
   return (
-    <section className='pt-32 px-6  '>
+    <section className='pt-32 px-3  '>
         <div className='w-full flex flex-col items-center gap-4'> 
 
           <h1 className='text-white font-DynaPuff uppercase font-bold text-4xl lg:text-5xl'> dog breed list </h1>
 
-          <div className='flex flex-col'>
+          <div className='flex flex-col '>
             {
               !listBreeds.length ? <Load /> :
               listBreeds.slice((page - 1) * splitPage,(page - 1) * splitPage + splitPage)
               .map(breed =>{
                 return(
-                  <Link to={`/breeds-list/${breed}`} key={breed} id={breed} className='text-[#46f8bf] hover:text-[#2b9876] transition ease-in duration-200'>
+                  <Link to={`/breeds-list/${breed}`} key={breed} id={breed} className='text-[#46f8bf] hover:text-[#2b9876] transition ease-in duration-200 '>
                     {<Card breed={breed} amount={3} /> }
                   </Link>
                 )
