@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import './css/App.css';
 
 import Home from './views/Home'
@@ -9,9 +9,12 @@ import Error from './views/Error'
 
 import Search from './components/Search'
 import Button from './components/Button'
+import { NavLink } from './components/NavLink'
+
 
 import swal from 'sweetalert';
 import axios from 'axios'
+
 
 function App() {
   const [breeds, setBreeds] = useState([])
@@ -36,6 +39,7 @@ function App() {
     }
   }
 
+
   const searchBreed = (breed) => {
 
     if(!breed){
@@ -44,9 +48,13 @@ function App() {
         icon: 'warning',
       })
     }
-    const search = breeds.filter((element) => element.toString().toLowerCase().includes(breed) && element)
-    setListBreeds(search)
+    if(breed){
+      const search = breeds.filter((element) => element.toString().toLowerCase().includes(breed) && element)
+      setListBreeds(search)
+      
+    }
   }
+
 
   const organizeBreeds = () => {
     const organize = listBreeds.map(breed => {return breed})
@@ -67,8 +75,12 @@ function App() {
         <header className='w-full flex justify-center bg-[#111517] border-b border-[#46f8bf] fixed top-0 z-20'>
           <nav className='w-full px-[15px] mx-auto sm:max-w-[540px] md:max-w-[600px] lg:max-w-[1066px] flex justify-between font-DynaPuff p-4 '>
 
-            <ul className='text-white hover:text-[#34ba90] transition ease-in duration-200 flex justify-center items-center text-[20px] lg:text-4xl'>
-              <li> <Link to='/breeds' onClick={(e) => setListBreeds(breeds)} >Home</Link> </li>
+            <ul className='transition ease-in duration-200 flex justify-center items-center text-[20px] lg:text-4xl'>
+              <li>
+               <NavLink className='hover:text-[#34ba90]' to='/breeds-list/' onClick={(e) => setListBreeds(breeds)}>
+                Home
+               </NavLink>
+              </li>
             </ul>
 
             <div className='flex gap-3 flex-row'>
@@ -81,15 +93,14 @@ function App() {
         </header>
 
         <Routes>
-          <Route path='/breeds' element={<Home listBreeds={listBreeds} />} />
-          <Route path='/breeds/:breed' element={<Show />} >
+          <Route path='/breeds-list/' element={<Home listBreeds={listBreeds} />} />
+          <Route path='/breeds-list/:breed' element={<Show />} >
             <Route path=':picture' element={<Picture />}/>
           </Route>
           <Route path='*' element={<Error />} />
         </Routes>
 
       </Router>
-
     </div>
   );
 }

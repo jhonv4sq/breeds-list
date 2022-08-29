@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import Load from '../components/Load'
 import Card from '../components/Card'
 import Pagination from '../components/Pagination'
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const Home = ({listBreeds}) => {
@@ -40,7 +40,7 @@ const Home = ({listBreeds}) => {
               listBreeds.slice((page - 1) * splitPage,(page - 1) * splitPage + splitPage)
               .map(breed =>{
                 return(
-                  <Link to={`/breeds/${breed}`} key={breed} id={breed} className='text-[#46f8bf] hover:text-[#2b9876] transition ease-in duration-200'>
+                  <Link to={`/breeds-list/${breed}`} key={breed} id={breed} className='text-[#46f8bf] hover:text-[#2b9876] transition ease-in duration-200'>
                     {<Card breed={breed} amount={3} /> }
                   </Link>
                 )
