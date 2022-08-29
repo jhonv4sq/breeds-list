@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/breeds-list/static/css/main.3443f39a.css",
+    "main.js": "/breeds-list/static/js/main.fee83908.js",
+    "static/js/787.bcdb5f20.chunk.js": "/breeds-list/static/js/787.bcdb5f20.chunk.js",
+    "index.html": "/breeds-list/index.html",
+    "main.3443f39a.css.map": "/breeds-list/static/css/main.3443f39a.css.map",
+    "main.fee83908.js.map": "/breeds-list/static/js/main.fee83908.js.map",
+    "787.bcdb5f20.chunk.js.map": "/breeds-list/static/js/787.bcdb5f20.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3443f39a.css",
+    "static/js/main.fee83908.js"
+  ]
+}
