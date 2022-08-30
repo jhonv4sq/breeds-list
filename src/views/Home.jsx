@@ -29,7 +29,7 @@ const Home = ({listBreeds}) => {
     setPage(1)
   }, [listBreeds])
   return (
-    <section className='pt-32 px-3  '>
+    <section className='pt-32 px-3'>
         <div className='w-full flex flex-col items-center gap-4'> 
 
           <h1 className='text-white font-DynaPuff uppercase font-bold text-4xl lg:text-5xl'> dog breed list </h1>
@@ -41,7 +41,7 @@ const Home = ({listBreeds}) => {
               .map(breed =>{
                 return(
                   <Link to={`/breeds-list/${breed}`} key={breed} id={breed} className='text-[#46f8bf] hover:text-[#2b9876] transition ease-in duration-200 '>
-                    {<Card breed={breed} amount={3} /> }
+                    {<Card breed={breed} amount={3} className='h-[6.31rem] w-[6.31rem] md:h-[10rem] md:w-[10rem] lg:h-[20rem] lg:w-[20rem]' /> }
                   </Link>
                 )
               })

@@ -23,7 +23,8 @@ const Card = ({breed, amount, className}) => {
     
     useEffect(() => {
         getImages()
-      },[])
+    },[])
+
   return (
     <div className={`${breed} bg-[#111517] my-6 p-4 md:p-5 flex flex-col gap-2 md:gap-5 rounded-xl w-full sm:max-w-[540px] md:max-w-[600px] lg:max-w-[1050px]`}>
         <div className='flex flex-row items-center'>
