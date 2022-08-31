@@ -95,7 +95,7 @@ function App() {
         <Routes>
           <Route path='/breeds-list/' element={<Home listBreeds={listBreeds} />} />
           <Route path='/breeds-list/:breed' element={<Show />} >
-            <Route path=':picture' element={<Picture />}/>
+            <Route path='/breeds-list/:breed/:picture' element={<Picture />}/>
           </Route>
           <Route path='*' element={<Error />} />
         </Routes>
